@@ -3,7 +3,6 @@ name: mindriver
 description: >
   智脑星河 MindRiver — Agent上下文数据库。
   文件系统范式管理记忆/资源/技能，分层加载减少91% token消耗，让Agent越用越聪明。
-  基于OpenViking。
 triggers:
   - Agent记忆管理
   - 上下文数据库
@@ -11,7 +10,6 @@ triggers:
   - 文件系统范式
   - context database
   - agent memory
-  - viking
   - 智脑星河
   - mindriver
 version: "1.0"
@@ -73,9 +71,7 @@ ov ls viking://user/test-user/
 
 | 提供商 | 说明 |
 |--------|------|
-| volcengine | 火山引擎豆包模型 |
 | openai | OpenAI官方API |
-| openai-codex | Codex VLM via ChatGPT/Codex OAuth |
 | kimi | Kimi代码会员 |
 | glm | 智谱GLM编程计划 |
 
@@ -129,12 +125,7 @@ viking://
 
 - Python 3.8+
 - Rust CLI（可选）
-- 基于VikingMem论文（VLDB 2026）
 
 ## 仓库
 
 https://github.com/503496348-ops/mindriver
-
-## 致谢
-
-基于[OpenViking](https://github.com/volcengine/OpenViking)（字节跳动火山引擎开源）
