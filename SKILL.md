@@ -15,6 +15,8 @@ triggers:
 version: "1.0"
 ---
 
+> 📖 详细技术文档见 [references/](references/) 目录
+
 # 智脑星河 · MindRiver
 
 > Agent上下文数据库 — 文件系统范式管理记忆/资源/技能，分层加载减少91% token消耗
