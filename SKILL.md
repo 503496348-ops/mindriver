@@ -12,7 +12,7 @@ triggers:
   - agent memory
   - 智脑星河
   - mindriver
-version: "1.0"
+version: 1.1.0
 ---
 
 > 📖 详细技术文档见 [references/](references/) 目录
