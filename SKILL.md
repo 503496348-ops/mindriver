@@ -1,6 +1,6 @@
 ---
 name: mindriver
-description: >
+description: "Agent上下文数据库。文件系统范式管理记忆/资源/技能，分层加载(L0摘要→L1概览→L2详情)减少91% token消耗。当需要管理Agent记忆、检索上下文、分层加载知识时使用。"
   智脑星河 MindRiver — Agent上下文数据库。
   文件系统范式管理记忆/资源/技能，分层加载减少91% token消耗，让Agent越用越聪明。
 triggers:
