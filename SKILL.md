@@ -12,7 +12,7 @@ triggers:
   - agent memory
   - 智脑星河
   - mindriver
-version: 1.1.0
+version: 1.2.0
 ---
 
 > 📖 详细技术文档见 [references/](references/) 目录
@@ -27,9 +27,10 @@ version: 1.1.0
 |------|------|------|
 | **文件系统范式** | 用`viking://`协议统一管理上下文 | 记忆/资源/技能不再分散 |
 | **分层加载** | L0摘要(100token)→L1概览(2k)→L2详情 | 减少token消耗91% |
-| **目录递归检索** | 先锁定目录，再精确检索 | 提高检索准确性 |
-| **可视化检索轨迹** | 可观察的检索过程 | 方便调试 |
-| **自动会话管理** | 会话结束自动更新记忆 | Agent越用越聪明 |
+| **结构化提取** | 从对话自动提取事实+实体+分类 | 记忆不再遗漏 |
+| **智能去重** | ADD/UPDATE/DELETE/NONE四操作决策 | 避免重复记忆 |
+| **BM25混合搜索** | BM25+关键词+路径+标签四维评分 | 检索更精准 |
+| **自动会话管理** | 会话结束自动提取→去重→存储 | Agent越用越聪明 |
 
 ## 快速开始
 
@@ -115,6 +116,59 @@ viking://
 | L1 概览 | ~2k | 结构和关键点 |
 | L2 详情 | 完整 | 按需深度读取 |
 
+## 新增能力（v1.2.0）— 记忆提取+去重+BM25搜索
+
+### 自动记忆提取+去重
+
+```python
+from mindriver import MindRiver, MemoryStore
+
+mr = MindRiver()
+store = MemoryStore(mr, user_id="alice")
+
+# 从对话自动提取+去重+存储
+messages = [
+    {"role": "user", "content": "我叫张三，是个软件工程师，不吃辣"},
+    {"role": "assistant", "content": "好的，记住了"},
+    {"role": "user", "content": "下周要去北京出差，喜欢吃粤菜"},
+]
+stored = store.auto_extract(messages)
+# 结果：自动提取3个事实，分类，去重，存储
+# [{"key": "a1b2c3d4e5", "value": "姓名是张三", "action": "add"},
+#  {"key": "...", "value": "职业是软件工程师", "action": "add"},
+#  {"key": "...", "value": "不吃辣", "action": "add"}]
+
+# 查看统计
+print(store.stats())
+# {"total": 3, "by_category": {"personal": 1, "professional": 1, "health": 1}, "avg_confidence": 0.75}
+```
+
+### BM25混合搜索
+
+```python
+from mindriver import HybridSearchEngine
+
+engine = HybridSearchEngine(mr._index)
+
+# 四维评分搜索
+results = engine.search("张三 工作", max_results=5)
+for r in results:
+    print(f"{r.path}: {r.final_score} (bm25={r.bm25_score}, kw={r.keyword_score})")
+```
+
+### 手动去重
+
+```python
+from mindriver import MemoryDeduplicator, MemoryAction
+
+dedup = MemoryDeduplicator()
+decisions = dedup.deduplicate(
+    new_facts=[{"text": "张三是工程师", "category": "professional"}],
+    existing_memories=[{"key": "k1", "value": "姓名是张三"}],
+)
+# 决策：ADD（新事实"职业"与已有"姓名"不同）
+```
+
 ## 适用场景
 
 - 🧠 **Agent记忆管理** — 长期记忆、用户偏好、任务经验
@@ -138,8 +192,10 @@ https://github.com/503496348-ops/mindriver
 
 - **存储引擎**: VikingDB文件系统范式 — 节点树+元数据索引+分层存储
 - **分层加载**: L0(摘要<500字)→L1(概览<2K字)→L2(详情全量)，减少91% token消耗
-- **搜索算法**: FTS5全文索引 + 路径前缀匹配 + 标签过滤
-- **数据管线**: 注册→分层编译→索引→检索→上下文注入
+- **记忆提取**: 规则引擎(实体+分类) + 可选LLM增强，从对话自动结构化提取事实
+- **去重引擎**: 文本相似度(字符Jaccard+关键词重叠) + 矛盾检测 + LLM语义去重
+- **搜索算法**: BM25(中英文混合分词) + 关键词精确匹配 + 路径匹配 + 标签匹配，四维加权评分
+- **数据管线**: 对话→提取→去重→存储→索引→检索→上下文注入
 - **API接口**: Python SDK + CLI工具 + Hermes Agent集成
 - **性能**: 毫秒级检索，增量索引更新
 

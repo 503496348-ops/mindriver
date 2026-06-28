@@ -1,0 +1,83 @@
+{
+  "viking://": {
+    "path": "viking://",
+    "content": "",
+    "summary": "",
+    "overview": "",
+    "node_type": "dir",
+    "metadata": {},
+    "children": [
+      "viking://user"
+    ],
+    "created_at": 1782656858.9191062,
+    "updated_at": 1782656858.9191065,
+    "access_count": 0,
+    "token_count": 0
+  },
+  "viking://user/test/memories/test_key": {
+    "path": "viking://user/test/memories/test_key",
+    "content": "test_value",
+    "summary": "test_value",
+    "overview": "test_value",
+    "node_type": "memory",
+    "metadata": {
+      "key": "test_key",
+      "source": "conversation",
+      "confidence": 1.0,
+      "tags": [],
+      "user_id": "test",
+      "category": "test",
+      "entities": []
+    },
+    "children": [],
+    "created_at": 1782656858.9191165,
+    "updated_at": 1782656858.9191165,
+    "access_count": 0,
+    "token_count": 2
+  },
+  "viking://user": {
+    "path": "viking://user",
+    "content": "",
+    "summary": "",
+    "overview": "",
+    "node_type": "dir",
+    "metadata": {},
+    "children": [
+      "viking://user/test"
+    ],
+    "created_at": 1782656858.919134,
+    "updated_at": 1782656858.9191341,
+    "access_count": 0,
+    "token_count": 0
+  },
+  "viking://user/test": {
+    "path": "viking://user/test",
+    "content": "",
+    "summary": "",
+    "overview": "",
+    "node_type": "dir",
+    "metadata": {},
+    "children": [
+      "viking://user/test/memories"
+    ],
+    "created_at": 1782656858.919136,
+    "updated_at": 1782656858.919136,
+    "access_count": 0,
+    "token_count": 0
+  },
+  "viking://user/test/memories": {
+    "path": "viking://user/test/memories",
+    "content": "",
+    "summary": "",
+    "overview": "",
+    "node_type": "dir",
+    "metadata": {},
+    "children": [
+      "viking://user/test/memories/test_key"
+    ],
+    "created_at": 1782656858.9191375,
+    "updated_at": 1782656858.9191377,
+    "access_count": 0,
+    "token_count": 0
+  }
+}
