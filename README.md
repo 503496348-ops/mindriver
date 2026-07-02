@@ -2,6 +2,10 @@
 
 > Agent上下文数据库 — 文件系统范式管理记忆/资源/技能，分层加载减少91% token消耗，让Agent越用越聪明。
 
+## Runtime Observability Pack
+
+MindRiver now includes a runtime observability pack for agent teams and context databases: PID/cmdline/heartbeat checks, semantic readiness probes, stale event-flow detection, resource/quota panels, and memory integrity audits. See `references/runtime-observability-pack.md`.
+
 ## 🧠 什么是MindRiver？
 
 MindRiver是专为AI Agent设计的上下文数据库，用于管理Agent的记忆、资源和技能。

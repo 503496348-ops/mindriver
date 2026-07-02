@@ -12,7 +12,11 @@ triggers:
   - agent memory
   - 智脑星河
   - mindriver
-version: 1.2.0
+  - Agent健康检查
+  - 常驻团队观测
+  - 运行时自检
+  - provider额度监控
+version: 1.3.0
 ---
 
 > 📖 详细技术文档见 [references/](references/) 目录
@@ -20,6 +24,19 @@ version: 1.2.0
 # 智脑星河 · MindRiver
 
 > Agent上下文数据库 — 文件系统范式管理记忆/资源/技能，分层加载减少91% token消耗
+
+
+## Runtime Observability Pack（v1.3.0）
+
+MindRiver 新增运行时观测能力，用于把“进程活着”与“智能体语义上可用”区分开：
+
+- **PID/cmdline/heartbeat 三重校验**：避免僵尸 pid 或错进程伪装成健康。
+- **语义就绪检查**：读取 pane/log/transcript，确认 agent 身份正确、已收到初始化、可接新任务。
+- **事件流探测**：识别 WebSocket/subscriber 进程仍在但事件停止流动的假活状态。
+- **资源与额度面板**：CPU、内存、磁盘、队列深度、provider quota 缺失时报 unknown，不报 0。
+- **上下文库完整性**：检查层级分布、空库、重复事实、检索污染。
+
+执行细则见 `references/runtime-observability-pack.md`。
 
 ## 核心能力
 
