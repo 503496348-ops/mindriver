@@ -12,6 +12,7 @@ MindRiver adds an observability layer for agent context systems and standing tea
 | Event flow | Router sees inbound events or keepalive within threshold. | WebSocket/subscriber alive but no events flow. |
 | Resource load | CPU, memory, disk, queue depth, provider quota. | Green process status hides exhausted disk/quota. |
 | Memory integrity | Context layer counts, tier distribution, duplicate/empty facts. | Context DB exists but retrieval is empty or polluted. |
+| Login recovery | Router-owned device-auth plan with isolated credential home. | Worker pane is stuck on auth prompt or wrong account. |
 
 ## Inspection Algorithm
 
@@ -52,3 +53,12 @@ MindRiver adds an observability layer for agent context systems and standing tea
 - Memory tier/duplicate audits
 - Provider usage and quota panels
 - Router stale-event recovery runbooks
+
+## Fleet Ops Panel Contract
+
+`mindriver/fleet_ops.py` provides a small deterministic contract:
+
+- `AgentProbe.evaluate()` reports `healthy/degraded/down` with reason codes such as `semantic_wedged`, `heartbeat_stale`, or `cmdline_mismatch`.
+- `EventFlowProbe.evaluate()` reports subscriber/event silence separately from process liveness.
+- `LoginRecoveryRequest.to_plan()` returns a router-owned `codex login --device-auth` command and isolated `CODEX_HOME`, while user-visible text stays token-safe.
+- `FleetOpsPanel.evaluate()` combines agent health, event-flow health, and context integrity into one report.
