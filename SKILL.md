@@ -16,7 +16,7 @@ triggers:
   - 常驻团队观测
   - 运行时自检
   - provider额度监控
-version: 1.4.0
+version: 1.5.0
 ---
 
 > 📖 详细技术文档见 [references/](references/) 目录
@@ -240,3 +240,8 @@ https://github.com/503496348-ops/mindriver
 
 - 智脑星河新增交付证据账本：记录 artifact producer/verifier 与 SHA-256，用于运行时产物可观测和可追溯。
 
+
+## 2026-07-03 运行时增强
+
+- 新增会话链路契约审计：验证 session_id/trace_id 在检索与工具执行路径中不漂移。
+- 验证：新增模块通过 py_compile 和定向 pytest，代码不依赖外部服务。

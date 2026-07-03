@@ -263,3 +263,8 @@ AtomCollide-智械工坊团队出品。更多产品见：[AtomCollide Product Ma
 - [CONTRIBUTING](CONTRIBUTING.md)
 
 
+
+## 2026-07-03 运行时增强
+
+- 新增会话链路契约审计：验证 session_id/trace_id 在检索与工具执行路径中不漂移。
+- 交付物包含可导入模块与定向单元测试。
