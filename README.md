@@ -290,7 +290,7 @@ AtomCollide-智械工坊团队出品。更多产品见：[AtomCollide Product Ma
 ## Lark Coding Agent Bridge 融合增强
 
 - 智脑星河新增 Bridge Ops 控制面：profile-local lark-cli 探针、workspace health、process/run 摘要与运维建议。
-- 新增模块：`mindriver/bridge_ops.py`
+- 新增模块：`mindriver/context_bridge_ops.py`
 - 来源模式：飞书/Lark 消息入口、本地 Claude/Codex 执行、会话 fingerprint、profile 隔离与安全门禁。
 
 ## Generic orchestration control plane

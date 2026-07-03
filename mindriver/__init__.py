@@ -25,4 +25,9 @@ __all__ = [
     "HybridSearchEngine", "HybridResult",
     "AgentProbe", "EventFlowProbe", "FleetOpsPanel", "LoginRecoveryRequest", "ProbeStatus",
     "SessionHop", "audit_session_chain", "build_hop", "contract_summary",
+    "RuntimeSnapshot", "StreamSnapshot", "allowed_operator_actions", "build_operator_card",
+    "BridgeHealthProbe", "BridgeOpsPanel", "BridgeProcess", "ProbeResult", "recommend_action",
 ]
+
+from .context_runtime_control_plane import RuntimeSnapshot, StreamSnapshot, allowed_operator_actions, build_operator_card
+from .context_bridge_ops import BridgeHealthProbe, BridgeOpsPanel, BridgeProcess, ProbeResult, recommend_action

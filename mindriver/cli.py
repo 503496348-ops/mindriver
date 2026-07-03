@@ -18,6 +18,7 @@ def main():
     tree_p = sub.add_parser("tree"); tree_p.add_argument("path", nargs="?", default="viking://"); tree_p.add_argument("--depth", type=int, default=3)
     gs = sub.add_parser("search"); gs.add_argument("query"); gs.add_argument("--limit", type=int, default=10)
     sub.add_parser("stats")
+    sub.add_parser("runtime-status", help="print a minimal context runtime status card")
     put_p = sub.add_parser("put"); put_p.add_argument("path"); put_p.add_argument("content"); put_p.add_argument("--type", default="file")
     get_p = sub.add_parser("get"); get_p.add_argument("path"); get_p.add_argument("--layer", default="full", choices=["L0","L1","full"])
 
@@ -42,6 +43,9 @@ def main():
         for r in SearchEngine(mr).search(args.query, args.limit): print(f"  [{r.score:.1f}] {r.path} ({r.node_type})")
     elif args.cmd == "stats":
         s = mr.stats(); print(f"📊 节点:{s['total_nodes']} Token:{s['total_tokens']} 类型:{s['type_distribution']}")
+    elif args.cmd == "runtime-status":
+        from .context_runtime_control_plane import RuntimeSnapshot
+        print(RuntimeSnapshot(active_items=0, blocked_items=0, streams=()).summary())
     elif args.cmd == "put": n = mr.put(args.path, args.content, node_type=args.type); print(f"✅ {n.path} ({n.token_count}tok)")
     elif args.cmd == "get":
         n = mr.get(args.path); 

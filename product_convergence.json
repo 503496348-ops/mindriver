@@ -7,10 +7,16 @@
     "setup.py"
   ],
   "smoke_targets": [
+    "mindriver/context_runtime_control_plane.py",
+    "mindriver/context_bridge_ops.py",
     "scripts/product_convergence_gate.py"
   ],
   "known_external_reference_files": [
     "scripts/product_convergence_gate.py"
   ],
-  "policy": "External/fusion references are allowed only when explicitly reviewed here; new fusion work must add a smoke target or entrypoint wiring."
+  "policy": "Cross-cutting runtime/bridge/workflow modules must be domain-mapped and referenced by declared entrypoints or smoke targets; generic orphan modules fail the convergence gate.",
+  "domain_mappings": {
+    "mindriver/context_runtime_control_plane.py": "MindRiver context runtime visibility and operator card summaries",
+    "mindriver/context_bridge_ops.py": "MindRiver context handoff probe and profile isolation checks"
+  }
 }

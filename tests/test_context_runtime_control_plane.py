@@ -1,4 +1,4 @@
-from mindriver.orchestration_control_plane import RuntimeSnapshot, StreamSnapshot, allowed_operator_actions, build_operator_card
+from mindriver.context_runtime_control_plane import RuntimeSnapshot, StreamSnapshot, allowed_operator_actions, build_operator_card
 
 
 def test_stream_snapshot_marks_stalled_pending_events():

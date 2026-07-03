@@ -1,4 +1,4 @@
-"""Generic orchestration control-plane model.
+"""MindRiver context runtime control-plane model.
 
 Summarises runtime health, pending event streams, and operator actions without
 binding the product to any themed organization model.
@@ -62,7 +62,7 @@ def allowed_operator_actions(state: str) -> list[str]:
 def build_operator_card(snapshot: RuntimeSnapshot) -> dict:
     summary = snapshot.summary()
     return {
-        "title": "Orchestration Runtime",
+        "title": "MindRiver Context Runtime",
         "status": summary["overall"],
         "metrics": {
             "active": summary["active_items"],

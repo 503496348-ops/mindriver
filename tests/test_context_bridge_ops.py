@@ -1,4 +1,4 @@
-from mindriver.bridge_ops import BridgeHealthProbe, BridgeOpsPanel, BridgeProcess, recommend_action
+from mindriver.context_bridge_ops import BridgeHealthProbe, BridgeOpsPanel, BridgeProcess, recommend_action
 
 
 def test_ops_panel_summarizes_profiles_and_runs(tmp_path):
