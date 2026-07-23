@@ -9,6 +9,8 @@
   "smoke_targets": [
     "mindriver/context_runtime_control_plane.py",
     "mindriver/context_bridge_ops.py",
+    "mindriver/memory.py",
+    "scripts/memory_bridge.py",
     "scripts/product_convergence_gate.py"
   ],
   "known_external_reference_files": [
@@ -17,6 +19,8 @@
   "policy": "Cross-cutting runtime/bridge/workflow modules must be domain-mapped and referenced by declared entrypoints or smoke targets; generic orphan modules fail the convergence gate.",
   "domain_mappings": {
     "mindriver/context_runtime_control_plane.py": "MindRiver context runtime visibility and operator card summaries",
-    "mindriver/context_bridge_ops.py": "MindRiver context handoff probe and profile isolation checks"
+    "mindriver/context_bridge_ops.py": "MindRiver context handoff probe and profile isolation checks",
+    "mindriver/memory.py": "MemoryStore protocol fields: clients, status, supersedes, cognitive_type + integrity audit",
+    "scripts/memory_bridge.py": "Memory bridge adapter for diagnostic context persistence"
   }
 }
