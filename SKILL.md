@@ -5,16 +5,18 @@ license: MIT
 metadata:
   author: 503496348-ops
   version: 1.0.0
-triggers:
-  - "记忆"
-  - "memory"
-  - "去重"
-  - "dedup"
-  - "事实提取"
-  - "记忆搜索"
 ---
 
 # MindRiver — 智能体记忆运维
+
+## 触发条件
+
+- "记忆"
+- "memory"
+- "去重"
+- "dedup"
+- "事实提取"
+- "记忆搜索"
 
 为 AI Agent 提供记忆管理全链路：存储、去重、事实提取、混合检索。
 
