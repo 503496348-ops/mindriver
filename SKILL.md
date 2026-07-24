@@ -1,6 +1,10 @@
 ---
 name: mindriver
 description: "智能体记忆运维 — 记忆存储、去重、事实提取、混合搜索"
+license: MIT
+metadata:
+  author: 503496348-ops
+  version: 1.0.0
 triggers:
   - "记忆"
   - "memory"
