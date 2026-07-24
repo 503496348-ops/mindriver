@@ -3,7 +3,7 @@
 import argparse, json, sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-def cmd_search(args):
+def cmd_search(args) -> None:
     """Search memory store."""
     from mindriver.core import MindRiver
     river = MindRiver()
@@ -11,14 +11,14 @@ def cmd_search(args):
     for r in (results or []):
         print(json.dumps({"text": str(r)[:200], "score": getattr(r, 'score', 0)}, ensure_ascii=False))
 
-def cmd_dedup(args):
+def cmd_dedup(args) -> None:
     """Run deduplication on memory store."""
     from mindriver.dedup import MemoryDeduplicator
     dedup = MemoryDeduplicator()
     result = dedup.deduplicate(args.input_file)
     print(json.dumps({"deduplicated": str(result)[:200]}, ensure_ascii=False))
 
-def cmd_extract(args):
+def cmd_extract(args) -> None:
     """Extract facts from text."""
     from mindriver.extractor import FactExtractor
     extractor = FactExtractor()
@@ -27,7 +27,7 @@ def cmd_extract(args):
     for f in (facts if isinstance(facts, list) else [facts]):
         print(json.dumps({"fact": str(f)[:200]}, ensure_ascii=False))
 
-def cmd_stats(args):
+def cmd_stats(args) -> None:
     """Show memory store statistics."""
     try:
         from mindriver.memory import MemoryStore
@@ -37,10 +37,10 @@ def cmd_stats(args):
         print(json.dumps({"store_type": "MemoryStore", "status": "ok", "note": str(e)[:100]}, ensure_ascii=False, indent=2))
 
 
-def cmd_info(args):
+def cmd_info(args) -> None:
     """Show product info."""
     print(json.dumps({"product": "MindRiver", "type": "智能体记忆运维", "status": "ok"}, ensure_ascii=False, indent=2))
-def main():
+def main() -> None:
     p = argparse.ArgumentParser(description='MindRiver 智能体记忆运维工具')
     sub = p.add_subparsers(dest='command')
 
